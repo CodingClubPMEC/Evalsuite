@@ -1,175 +1,163 @@
-# Evalsuite
+# Evalsuite: Jury Marking Platform
 
-SIH Jury Marking Website
+A modern evaluation platform for jury members to score and review teams participating in the events conducted by CDD at PMEC.
 
-A modern web application for jury members to evaluate and mark teams participating in the Smart India Hackathon (SIH) internal hackathon at PMEC.
-🚀 Features
-Homepage
+---
 
-    Professional navbar with hackathon branding
-    Hero section with event information
-    4 jury profile cards with photos and details
-    Responsive design for all devices
-    Clean footer with hackathon information
+## 🚀 Overview
 
-Marking Page
+Evalsuite streamlines the entire judging workflow, from browsing jury profiles to entering marks and exporting final sheets, with a focus on reliability, simplicity, and offline-friendly usage.
 
-    Jury information display with photo and credentials
-    Interactive marksheet table for all participating teams
-    Real-time score calculation and validation
-    Auto-calculation of total scores
-    Excel export functionality for record-keeping
-    Input validation (max marks enforcement)
-    Responsive table design with horizontal scrolling
+---
 
-Key Functionality
+## ✨ Features
 
-    Team Management: Display of 5 participating teams with member details
-    Evaluation Criteria: 5 scoring categories (Innovation, Feasibility, Presentation, Impact, Technical Quality)
-    Score Validation: Automatic enforcement of maximum marks per criteria
-    Data Persistence: Automatic saving to browser localStorage with refresh protection
-    Excel Export: One-click export to Excel with formatted data and timestamps
-    Routing: Seamless navigation between jury profiles and marking pages
+### Marking Page
 
-🛠️ Tech Stack
+- Prominent jury information panel (photo, name, designation, department).
+- Interactive marksheet table listing all participating teams.
+- Real-time score calculation per team and per criterion.
+- Automatic total computation with validation of maximum marks.
+- One-click Excel export of complete marksheet.
+- Responsive table with horizontal scrolling for smaller screens.
 
-    Frontend: ReactJS with Vite
-    Styling: Tailwind CSS
-    Routing: React Router DOM
-    Excel Export: xlsx library
-    Icons: Emoji and Unicode symbols
+### Key Functionality
 
-📋 Prerequisites
+- **Team Management:**
+  - Display of all participating teams (default: 5 teams).
+  - Each team shows team name, project title, and member names.
 
-Before running this application, make sure you have the following installed:
+- **Evaluation Criteria (Customizable):**
+  - Example default criteria and maximum marks:
+    - Innovation – 25
+    - Feasibility – 20
+    - Presentation – 15
+    - Impact – 20
+    - Technical Quality – 20
 
-    Node.js (version 14 or higher)
-    npm (Node Package Manager)
+- **Score Validation:**
+  - Inputs are restricted so that marks cannot exceed their respective max.
+  - Visual feedback for invalid or missing scores where applicable.
 
-🔧 Installation & Setup
+- **Data Persistence:**
+  - Automatic saving of scores in the browser using localStorage.
+  - Protection against accidental refresh and tab closure.
+  - Backup copy maintained before overwriting saved data.
 
-Clone the repository (or navigate to the project directory):
+- **Excel Export:**
+  - Generate a formatted Excel file of all team scores.
+  - Includes team-wise and criterion-wise breakdown along with totals.
+  - Jury name and timestamp embedded in filename and sheet metadata.
 
-cd ~/Projects/sih-jury-marking-website
+- **Routing & Navigation:**
+  - Fast navigation between homepage, jury profiles, and marking pages.
+  - Separate marking views for each jury member (configurable via data).
 
-Install dependencies:
+---
 
-npm install
+## 🛠️ Tech Stack
 
-Start the development server:
+### Frontend
 
-npm run dev
+- **Preact** (Vite-based setup) for a performant, React-compatible UI.
+- **Tailwind CSS** for utility-first, responsive styling.
+- **Preact Router** (or equivalent) for client-side navigation.
+- **xlsx** (or compatible xlsx library) for Excel export on the client.
 
-    Open your browser and navigate to http://localhost:5173
+### Backend
 
-🏗️ Project Structure
+- **Python FastAPI** for handling backend operations:
+  - REST APIs for team, criteria, and score data (optional / configurable).
+  - Potential integration with a database for centralized storage.
 
-src/
-├── components/
-│ ├── Navbar.jsx # Navigation bar component
-│ ├── Footer.jsx # Footer component
-│ ├── JuryCard.jsx # Jury profile card component
-│ └── MarksheetTable.jsx # Interactive marking table
-├── pages/
-│ ├── Homepage.jsx # Main landing page
-│ └── MarkingPage.jsx # Jury marking interface
-├── data/
-│ └── juryData.js # Jury profiles, teams, and criteria data
-├── utils/
-│ └── excelExport.js # Excel export functionality
-├── App.jsx # Main app component with routing
-└── main.jsx # Application entry point
+> Note: The app can work in a purely frontend + localStorage mode for quick internal deployments, or be connected to the FastAPI backend for more robust, multi-device persistence.
 
-📊 Data Configuration
+---
 
-The application uses sample data defined in src/data/juryData.js:
+## 📋 Prerequisites
 
-    4 Jury Members: Professors and industry experts with photos and credentials
-    5 Participating Teams: Teams with member names and project titles
-    5 Evaluation Criteria: Innovation (25), Feasibility (20), Presentation (15), Impact (20), Technical Quality (20)
+### Frontend
 
-You can modify this data file to match your actual hackathon participants and criteria.
-🎯 Usage Guide
-For Jury Members:
+- Node.js (version 14 or higher)
+- npm (Node Package Manager)
 
-    Access the Homepage: Open the website to see all jury profiles
-    Select Your Profile: Click on your profile card to access the marking page
-    Enter Scores: Fill in marks for each team according to evaluation criteria
-    Review Totals: Check auto-calculated totals for accuracy
-    Save Results: Click "Save Marksheet" to download Excel file with all scores
+### Backend
 
-Features:
+- Python 3.9+
+- FastAPI and Uvicorn (and any DB driver if you use a database)
 
-    Input Validation: Scores cannot exceed maximum marks for each criteria
-    Real-time Calculation: Totals update automatically as you enter scores
-    Data Persistence: Your scores are automatically saved and restored after page refresh
-    Auto-save: Changes are saved automatically every 3 seconds
-    Excel Export: Downloaded files include timestamps and jury information
-    Navigation: Easy return to homepage or switch between jury profiles
+---
 
-📱 Responsive Design
+## 📱 Responsive Design
 
-The application is fully responsive and works on:
+Evalsuite is fully responsive and tested on:
 
-    Desktop computers
-    Tablets
-    Mobile phones
-    Different screen orientations
+- Desktop and laptops (large and wide screens)
+- Tablets (portrait and landscape)
+- Smartphones (small and medium screens)
 
-💾 Data Persistence
+Tables support horizontal scrolling on smaller devices without breaking layout.
 
-The application automatically saves your evaluation data to prevent loss:
+---
 
-    Auto-save: Scores are automatically saved every 3 seconds as you type
-    Page Refresh Protection: Data persists when you refresh the page or close/reopen your browser
-    Backup System: Automatic backups are created before any data modifications
-    Storage Status: Visual indicator shows when data is saved and storage health
-    Offline Support: Data is stored locally in your browser and doesn't require internet connection
+## 💾 Data Persistence & Safety
 
-Data Storage Features:
+The application is designed to minimize data loss:
 
-    ✅ Automatic saving every 3 seconds
-    ✅ Manual save button for immediate saving
-    ✅ Save before page close/navigation
-    ✅ Data validation and corruption recovery
-    ✅ Visual save status indicators
-    ✅ Backup and restore functionality
+- **Auto-save:**
+  - Scores are automatically saved every few seconds as you type.
 
-🔒 Excel Export Details
+- **Page Refresh Protection:**
+  - Data is reloaded from localStorage on page refresh or browser reopen.
 
-When you click "Save Marksheet", the system:
+- **Backup & Restore:**
+  - Before overriding existing data, a backup copy is stored.
+  - Basic recovery logic can restore from backup if corruption is detected.
 
-    Generates an Excel file with all team scores
-    Includes jury name and timestamp in filename
-    Formats data with proper column widths
-    Shows maximum marks for each criteria
-    Calculates and displays totals
-    Downloads automatically to your device
+- **Save Status Indicator:**
+  - A visual indicator shows states such as "Saving…", "Saved", or "Error".
 
-🚀 Building for Production
+- **Offline Support:**
+  - All data is stored in the browser, so the app keeps working without internet after initial load.
 
-To build the application for production:
+(If connected to a FastAPI backend and database, centralized persistence and cross-device access become possible while local fallback can still be retained if desired.)
 
-npm run build
+---
 
-This creates a dist folder with optimized production files.
-🤝 Contributing
+## 🔒 Excel Export Details
 
-This is an MVP (Minimum Viable Product) for the SIH Internal Hackathon at PMEC. Future enhancements could include:
+When the jury clicks **"Save Marksheet"** / **"Export to Excel"**:
 
-    User authentication for jury members
-    Database integration for persistent storage
-    Real-time collaboration between jury members
-    Advanced analytics and reporting
-    Mobile app version
-    Integration with official SIH systems
+- An Excel file is generated containing:
+  - Jury information (name, ID, department).
+  - Each team's scores across all criteria.
+  - Maximum marks per criterion.
+  - Calculated total score per team.
 
-📝 License
+- The filename includes:
+  - Jury identifier or name.
+  - Timestamp (date and time of export).
 
-This project is created for educational and hackathon purposes at PMEC.
-📞 Support
+- Columns are formatted with readable widths and sensible ordering.
 
-For technical support or questions about this application, please contact the development team or hackathon organizers at PMEC.
+---
 
-Happy Judging! 🏆
+## 🤝 Contributing & Future Enhancements
+
+Evalsuite is currently an MVP built for the events of CDD. Planned and potential future improvements include:
+
+- Secure authentication and role-based access control for jury members.
+- Full database integration (PostgreSQL, SQLite, etc.) via FastAPI.
+- Real-time synchronization and collaboration between multiple juries.
+- Aggregated analytics dashboards (rankings, averages, criterion weight tuning).
+- A dedicated mobile app or PWA mode for offline-first judging.
+
+Contributions, suggestions, and feature requests are welcome.
+
+---
+
+## 📞 Support
+
+For technical issues, feature requests, or deployment help, please contact:
+Happy judging and good luck to all teams! 🏆
 
