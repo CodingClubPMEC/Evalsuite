@@ -3,6 +3,8 @@ from fastapi import FastAPI
 from backend.handlers import health_handler
 from backend.router import RouteInfo, register_routes
 
+from backend.api.jury.router import JURY_ROUTES
+
 server: FastAPI = FastAPI()
 
 
@@ -37,3 +39,4 @@ ROUTES_INFO: dict[str, RouteInfo] = {
 }
 
 register_routes(server, ROUTES_INFO)
+register_routes(server, JURY_ROUTES)
