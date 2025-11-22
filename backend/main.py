@@ -5,6 +5,8 @@ from backend.router import RouteInfo, register_routes
 
 server: FastAPI = FastAPI()
 
+# WARN: Add middleware
+
 
 async def index_handler() -> dict[str, dict[str, object]]:
     extracted_info: dict[str, dict[str, object]] = {
@@ -34,6 +36,12 @@ ROUTES_INFO: dict[str, RouteInfo] = {
         response_model=None,
         handler=health_handler,
     ),
+    # TODO: Add jury routes
+    # TODO: Add organization routes
+    # TODO: Add admin routes
+    # TODO: Add event routes
+    # TODO: Add team routes
+    # TODO: Add marking routes
 }
 
 register_routes(server, ROUTES_INFO)
