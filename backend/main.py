@@ -1,50 +1,39 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
-from backend.handlers import health_handler
-from backend.router import RouteInfo, register_routes
+from backend import create_tables
+from backend.api.admin import admin_router
+from backend.api.event import event_router
+from backend.api.jury import jury_router
 
-from backend.api.jury.router import JURY_ROUTES
+# from backend.api.criteria import criteria_router
+# from backend.api.marking import marking_router
+from backend.api.org import org_router
 
-server: FastAPI = FastAPI()
+# from backend.api.team import team_router
 
+
+@asynccontextmanager
+async def lifespan(server: FastAPI):
+    create_tables()
+    yield
+
+
+server: FastAPI = FastAPI(lifespan=lifespan)
 # WARN: Add middleware
 
 
-async def index_handler() -> dict[str, dict[str, object]]:
-    extracted_info: dict[str, dict[str, object]] = {
-        path: {
-            "name": route_details.name,
-            "description": route_details.description,
-            "methods_implemented": route_details.methods_implemented,
-            "reponse_model": route_details.response_model,
-        }
-        for path, route_details in ROUTES_INFO.items()
-    }
-    return extracted_info
+@server.get("/")
+async def index_handler() -> dict[str, str]:
+    return {"status": "ok"}
 
 
-ROUTES_INFO: dict[str, RouteInfo] = {
-    "/": RouteInfo(
-        name="Index",
-        description="Shows the description of all the routes.",
-        methods_implemented=["Get"],
-        response_model=None,
-        handler=index_handler,
-    ),
-    "/health": RouteInfo(
-        name="health",
-        description="Shows if the health of the server.",
-        methods_implemented=["Get"],
-        response_model=None,
-        handler=health_handler,
-    ),
-    # TODO: Add jury routes
-    # TODO: Add organization routes
-    # TODO: Add admin routes
-    # TODO: Add event routes
-    # TODO: Add team routes
-    # TODO: Add marking routes
-}
-
-register_routes(server, ROUTES_INFO)
-register_routes(server, JURY_ROUTES)
+server.include_router(admin_router)
+server.include_router(event_router)
+server.include_router(jury_router)
+server.include_router(org_router)
+# TODO: Make these routers
+# server.include_router(criteria_router)
+# server.include_router(marking_router)
+# server.include_router(team_router)
