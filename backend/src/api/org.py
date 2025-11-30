@@ -5,7 +5,8 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 
-from backend import Org, get_session
+from src.db import get_session
+from src.schemas import Org
 
 org_router = APIRouter()
 

@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from .main import server
+from src.main import server
 
 client = TestClient(server)
 
