@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlmodel import Session, SQLModel
 
+from .schemas import *
+
 _ = load_dotenv()
 
 db_url = str(os.getenv("DB_URL"))
