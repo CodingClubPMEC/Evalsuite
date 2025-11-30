@@ -1,0 +1,14 @@
+[project]
+name = "evalsuite-backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "dotenv>=0.9.9",
+    "fastapi>=0.122.0",
+    "httpx>=0.28.1",
+    "psycopg2>=2.9.11",
+    "pytest>=9.0.1",
+    "sqlmodel>=0.0.27",
+]

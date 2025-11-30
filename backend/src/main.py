@@ -2,16 +2,16 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from backend import create_tables
-from backend.api.admin import admin_router
-from backend.api.event import event_router
-from backend.api.jury import jury_router
+from .api.admin import admin_router
+from .api.event import event_router
+from .api.jury import jury_router
 
-# from backend.api.criteria import criteria_router
-# from backend.api.marking import marking_router
-from backend.api.org import org_router
+# from .api.criteria import criteria_router
+# from .api.marking import marking_router
+from .api.org import org_router
+from .db import create_tables
 
-# from backend.api.team import team_router
+# from .api.team import team_router
 
 
 @asynccontextmanager
