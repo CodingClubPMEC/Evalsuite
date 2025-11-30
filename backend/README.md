@@ -16,12 +16,12 @@ Supports organizations, admins, events, teams, juries, criteria, marking, and sc
 ## 🏗️ Architecture
 
 ```
-backend/
+src/
 ├── api/                # FastAPI routers (admin, event, jury, org)
 ├── schemas.py          # SQLModel table definitions
 ├── db.py               # Database engine + session management
-├── main.py             # FastAPI app + lifespan events
-└── tests/              # pytest integration tests
+└── main.py             # FastAPI app + lifespan events
+tests/                  # pytest integration tests
 ```
 
 ## 🚀 Quick Start
@@ -29,14 +29,15 @@ backend/
 ### 1. Setup Environment
 
 ```bash
-uv sync          # Install dependencies (pyproject.toml)
+uv venv         # Create virtual environment (.venv)
+uv sync         # Install dependencies (pyproject.toml)
 # Edit .env to include DB_URL, TEST_DB_URL.
 ```
 
 ### 2. Run Server
 
 ```bash
-uvicorn backend.main:server --reload --port 8000
+fastapi dev
 ```
 
 **API Docs**: http://localhost:8000/docs
@@ -44,7 +45,7 @@ uvicorn backend.main:server --reload --port 8000
 ### 3. Run Tests
 
 ```bash
-pytest test -vv          # All tests
+pytest tests -vv          # All tests
 ```
 
 ## 📋 API Endpoints
@@ -57,11 +58,11 @@ pytest test -vv          # All tests
 | `/jury/`  | POST `/jury/`  | GET `/jury/{id}`  | DELETE `/jury/{id}`  | GET `/jury/`  |
 
 **Foreign Key Flow**:
-[evalsuitedbschema]('./docs/evalsuitedbschema.png')
+[evalsuitedbschema]('docs/evalsuitedbschema.png')
 
 ## 🧪 Testing Strategy
 
-- **Integration Tests**: `api/test_*.py` - TestClient + test DB
+- **Integration Tests**: `tests/test_*.py` - TestClient + test DB
 - **Fixture Pattern**: Create parents → child → verify → cleanup
 - **Test DB**: Separate `TEST_DB_URL` in `.env`
 - **Isolation**: Session rollback after each test
