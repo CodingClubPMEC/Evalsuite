@@ -102,14 +102,3 @@ pytest tests -vv          # All tests
 ---
 
 **Built for hackathons, codefests, and competitive programming events.** 🚀
-
-[1](https://docs.pytest.org/en/stable/explanation/goodpractices.html)
-[2](https://pytest-with-eric.com/pytest-best-practices/pytest-organize-tests/)
-[3](https://docs.pytest.org/en/stable/how-to/fixtures.html)
-[4](https://stackoverflow.com/questions/76608690/pytest-best-practice-to-setup-and-teardown-before-and-after-all-tests)
-[5](https://betterstack.com/community/guides/testing/pytest-fixtures-guide/)
-[6](https://stackoverflow.com/questions/74406488/how-to-best-structure-conftest-and-fixtures-in-across-multiple-pytest-files)
-[7](https://www.reddit.com/r/Python/comments/o2pcj1/what_are_best_practices_with_pytest/)
-[8](https://realpython.com/pytest-python-testing/)
-[9](https://www.almabetter.com/bytes/articles/getting-started-with-pytest-fixtures)
-[10](https://keploy.io/blog/community/python-testing-with-pytest-features-best-practices?trk=article-ssr-frontend-pulse_little-text-block)
