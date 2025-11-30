@@ -58,7 +58,7 @@ pytest tests -vv          # All tests
 | `/jury/`  | POST `/jury/`  | GET `/jury/{id}`  | DELETE `/jury/{id}`  | GET `/jury/`  |
 
 **Foreign Key Flow**:
-[evalsuitedbschema]('docs/evalsuitedbschema.png')
+![evalsuitedbschema](docs/evalsuitedbschema.png)
 
 ## 🧪 Testing Strategy
 
