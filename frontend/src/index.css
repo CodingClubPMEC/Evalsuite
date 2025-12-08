@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --color-background: #ffffff;
+    --color-foreground: #09090b;
+    --color-muted: #71717a;
+    --color-border: #e4e4e7;
+    --color-surface: #f4f4f5;
+    --font-sans: Inter, sans-serif;
+}
+
+:root {
+    font-family: var(--font-sans);
+    @apply bg-background text-foreground antialiased;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Custom Input Reset for the Marking Table */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

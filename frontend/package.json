@@ -7,8 +7,13 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@preact/signals": "^2.5.1",
+		"clsx": "^2.1.1",
+		"lucide-preact": "^0.556.0",
 		"preact": "^10.26.9",
-		"preact-iso": "^2.11.0"
+		"preact-router": "^4.1.2",
+		"tailwind-merge": "^3.4.0",
+		"xlsx": "^0.18.5"
 	},
 	"devDependencies": {
 		"@preact/preset-vite": "^2.10.2",
