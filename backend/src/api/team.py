@@ -12,7 +12,9 @@ team_router = APIRouter()
 
 
 @team_router.post("/team/", response_model=Team, status_code=201)
-def create_team(*, session: Annotated[Session, Depends(get_session)], team: Team) -> Team:
+def create_team(
+    *, session: Annotated[Session, Depends(get_session)], team: Team
+) -> Team:
     db_team = Team.model_validate(team)
     session.add(db_team)
     session.commit()
@@ -20,15 +22,17 @@ def create_team(*, session: Annotated[Session, Depends(get_session)], team: Team
     return db_team
 
 
-@team_router.get("/team/event/{event_id}", response_model=Sequence[Team])
-def read_teams_by_event(*, session: Annotated[Session, Depends(get_session)], event_id: UUID):
-    return session.exec(
-        select(Team).where(Team.event_id == event_id)
-    ).all()
+@team_router.get("/team/{event_id}", response_model=Sequence[Team])
+def read_teams_by_event(
+    *, session: Annotated[Session, Depends(get_session)], event_id: UUID
+) -> Sequence[Team]:
+    return session.exec(select(Team).where(Team.event_id == event_id)).all()
 
 
 @team_router.get("/team/{team_id}", response_model=Team)
-def read_team(*, session: Annotated[Session, Depends(get_session)], team_id: UUID) -> Team:
+def read_team(
+    *, session: Annotated[Session, Depends(get_session)], team_id: UUID
+) -> Team:
     team = session.get(Team, team_id)
     if not team:
         raise HTTPException(status_code=404, detail="Team not found")
