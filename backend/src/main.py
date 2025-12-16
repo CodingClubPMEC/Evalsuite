@@ -5,9 +5,10 @@ from fastapi import FastAPI
 from .api.admin import admin_router
 from .api.event import event_router
 from .api.jury import jury_router
+from .api.team import team_router
 
 # from .api.criteria import criteria_router
-# from .api.marking import marking_router
+from .api.marking import marking_router
 from .api.org import org_router
 from .db import create_tables
 
@@ -33,7 +34,7 @@ server.include_router(admin_router)
 server.include_router(event_router)
 server.include_router(jury_router)
 server.include_router(org_router)
+server.include_router(team_router)
+server.include_router(marking_router)
 # TODO: Make these routers
 # server.include_router(criteria_router)
-# server.include_router(marking_router)
-# server.include_router(team_router)
