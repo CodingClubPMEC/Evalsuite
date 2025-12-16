@@ -1,6 +1,5 @@
 import uuid
 from datetime import datetime, timezone
-from typing import List
 
 from sqlmodel import JSON, Column, Field, SQLModel
 
@@ -39,7 +38,7 @@ class Team(SQLModel, table=True):
     name: str
     created_at: datetime = datetime.now(timezone.utc)
     leader: str
-    members: List[str] = Field(sa_column=Column(JSON))
+    members: list[str] = Field(sa_column=Column(JSON))
     problem_statement: str
     event_id: uuid.UUID = Field(foreign_key="event.id")
 
